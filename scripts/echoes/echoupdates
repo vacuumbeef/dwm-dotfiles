@@ -1,0 +1,20 @@
+#!/bin/bash
+# Echo number of available updates to a file
+file=/tmp/updatescache
+
+[ -f $file ] || ( echo 1 ; echo 2 ) >> $file
+
+pac=$(checkupdates | wc -l)
+aur=$(checkupdates-with-aur | wc -l)
+aur=$((aur - pac))
+#echo $pac
+#echo $aur
+
+if [ "$aur" -gt 5 ]; then
+	eww_pacman_top
+elif [ "$aur" -gt 30 ]; then
+	eww_pacman_top
+fi
+
+sed -i "1s/.*/$pac/" $file
+sed -i "2s/.*/$aur/" $file

@@ -1,0 +1,5 @@
+#!/bin/bash
+rm -f $HOME/otr/git/lesssuck/st/config.h
+cp $HOME/otr/git/lesssuck/st/config.def.h_backup $HOME/otr/git/lesssuck/st/config.def.h
+patch -d $HOME/otr/git/lesssuck/st < $HOME/otr/git/lesssuck/st/flavours_diff
+sudo make -C $HOME/otr/git/lesssuck/st clean install

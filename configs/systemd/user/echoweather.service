@@ -1,0 +1,10 @@
+[Unit]
+Description=Echoes some info about weather in /tmp/weathercache
+Wants=echoweather.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c 'exec $HOME/.local/bin/echoweather'
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+pulsemixer $@
+#mute=$(pulsemixer --get-mute)
+#if [ "$mute" = "true" ]; then
+#      volume="muted"
+#      icon=""
+#else 
+      volume="$(pulsemixer --get-volume | cut -f1 -d' ')"
+#      if [ "$volume" -gt "66" ]; then
+#            icon=""
+#      elif [ "$volume" -gt 33 ]; then
+#            icon=""
+#      elif [ "$volume" -gt 0 ]; then 
+#            icon=""
+#      else 
+#            icon=""
+#      fi
+#      volume="$volume%"
+#fi
+
+eww update volume="$icon $volume"
+#echo "{\"content\": \"$volume\", \"icon\": \"$icon\"}"

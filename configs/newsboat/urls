@@ -1,0 +1,33 @@
+"query: Videos:tags # \"vid\""
+"query: News:tags # \"artcl\""
+"query: Reddit:tags # \"r\""
+"query: Feeds:tags # \"feeds\""
+"query: Git:tags # \"gh\""
+"query: Games:tags # \"gam\""
+"query: Music:tags # \"music\""
+
+
+### Videos
+https://invidious.snopyta.org/feed/channel/UCxD2f0Xh4WlcKJO9W8nIOWA "!hidden" "~Tobin" vid
+https://invidious.snopyta.org/feed/channel/UCEOXxzW2vU0P-0THehuIIeg "!hidden" "~CapDslsn" vid
+https://invidious.snopyta.org/feed/channel/UCaGev0JRG7Dp5c_R4ROADLw "!hidden" "~Firth" vid
+https://invidious.snopyta.org/feed/channel/UCZOnoLKzoBItcEk5OsES2TA "!hidden" "~DHMIS" vid
+https://invidious.snopyta.org/feed/channel/UCvrLvII5oxSWEMEkszrxXEA "!hidden" "~N-O-D-E" vid
+
+### Arcticles
+https://mosfet.net/feed "!hidden" "~Mosfet" artcl
+
+### GitHub
+https://github.com/qutebrowser/qutebrowser/releases "!hidden" "~qutebrowser" gh
+
+### Reddit
+https://reddit.com/r/linux/.rss "!hidden" "~r/Linux" r 
+
+### Feeds
+https://www.archlinux.org/feeds/news/ "!hidden" "~Arch News" feeds
+
+### Games
+https://nitter.nixnet.xyz/Stone_Shard/rss "!hidden" "~StoneShard" gam
+
+### Music
+https://nitter.snopyta.org/subheim_music/rss "!hidden" music

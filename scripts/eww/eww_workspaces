@@ -1,0 +1,13 @@
+#!/bin/bash
+#active=$(eww windows | grep "workspaces")
+
+#for i in $(ps aux | grep eww_workspaces_close | grep bash | awk '{ print $2 }'); do
+#	kill $i;
+#done
+#eww open workspaces
+#eww_workspaces_close
+
+pids=$(pgrep -f eww_workspaces_close)
+kill $pids 2>/dev/null
+eww open workspaces
+eww_workspaces_close

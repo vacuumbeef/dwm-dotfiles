@@ -1,0 +1,73 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+//Global Styles
+.status {
+  all: unset;
+// Start flavours
+  background-color: #212b46;
+  color: #cfc7bb;
+  border: 2px solid #aca8a3;
+// End flavours
+  padding: 15px;
+}
+
+.status_remind {
+  padding: 15px;
+  font-size: 13px;
+}
+
+.tags {
+  all: unset;
+// Start flavours
+  background-color: transparent;
+// End flavours
+  padding: 1px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.timedate {
+  	font-size: 16px;
+}
+
+.weather {
+  	font-size: 15px;
+}
+
+.updates {
+  	font-size: 15px;
+}
+
+.battery {
+  	font-size: 15px;
+}
+
+.volume {
+  	font-size: 15px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 0px;
+  min-height: 10px;
+  min-width: 100px;
+  margin-left: 13px;
+}
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 0px;
+}
+
+.label-ram {
+  font-size: large;
+}
+
+.workspaces button:hover {
+  color: #D35D6E;
+}
+

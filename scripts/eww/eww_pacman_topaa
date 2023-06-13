@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+#
+#
+HOME=/home/cordbeef
+LOGNAME=cordbeef
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/home/cordbeef/bin/eww
+LANG=en_US.UTF-8
+SHELL=/bin/sh
+PWD=/home/cordbeef/bin/eww
+
+
+active_status=$(eww windows | grep "*status")
+battery=$(eww windows | grep "*battery_top")
+
+
+if [ -z "$active_status"]; then
+	for i in $(ps aux | grep eww_status_close | grep bash | awk '{ print $2 }'); do
+		kill $i;
+	done
+	if [ -z "$battery"]; then
+		echo no
+		eww open pacman_top
+		/home/cordbeef/bin/eww/eww_pacman_close
+	else
+		echo yes
+		eww open pacman_top_under
+		/home/cordbeef/bin/eww/eww_pacman_close
+	fi
+fi

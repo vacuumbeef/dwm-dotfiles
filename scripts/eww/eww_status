@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+#
+active=$(eww windows | grep "*status")
+
+if [ -z "$active"]; then
+	for i in $(ps aux | grep eww_status_close | grep bash | awk '{ print $2 }'); do
+		kill $i;
+	done
+	eww open-many status_main status_second
+	#status_updates status_battery
+	eww_status_close
+else
+	eww close status_main
+	eww close status_second
+fi

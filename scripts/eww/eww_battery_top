@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+#
+active_status=$(eww windows | grep "*status")
+pacman=$(eww windows | grep "*updates_top")
+
+if [ -z "$active_status"]; then
+	for i in $(ps aux | grep eww_status_close | grep bash | awk '{ print $2 }'); do
+		kill $i;
+	done
+	if [ -z "$pacman"]; then
+		eww open battery_top
+		eww_battery_close
+	else
+		echo yes
+		eww open battery_under
+		eww_battery_close
+	fi
+fi

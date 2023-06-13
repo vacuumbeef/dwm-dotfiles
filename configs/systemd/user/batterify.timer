@@ -1,0 +1,10 @@
+[Unit]
+Description=Battery level
+Requires=batterify.service
+
+[Timer]
+Unit=batterify.service
+OnCalendar=*-*-* *:*:30
+
+[Install]
+WantedBy=timers.target

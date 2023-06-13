@@ -1,0 +1,10 @@
+[Unit]
+Description=Echoes update info in /tmp/updatescache
+Wants=echoupdates.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c 'exec $HOME/.local/bin/echoupdates'
+
+[Install]
+WantedBy=multi-user.target

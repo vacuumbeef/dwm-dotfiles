@@ -1,0 +1,79 @@
+#!/bin/bash
+file=/tmp/weathercache
+
+#weather=$(curl wttr.in/saint-petersburg?format="%C")
+#temp=$(curl wttr.in/saint-petersburg?format="%t")
+#wind="$(curl wttr.in/saint-petersburg?format="%w")"
+rm -rf $file && curl "api.openweathermap.org/data/2.5/weather?id={498817}&units=metric&cnt=3&appid={5138611498b067f16ef841f76d3cab11}" | jq | grep -E '"main": "|"description"|"temp":|"speed":' | cut -d":" -f2 | sed 's/[",]//g' | cut -c2- >> $file
+
+weather=$(awk 'NR==1' $file)
+description=$(awk 'NR==2' $file)
+description="$(tr '[:lower:]' '[:upper:]' <<< ${description:0:1})${description:1}"
+temp=$(awk 'NR==3' $file)
+wind=$(awk 'NR==4' $file)
+
+echo ${temp:0:1}
+
+if [ ${temp:0:1} -le "3" ]; then
+	temp_icon=
+elif [ ${temp:0:1} -gt "3" ] && [ ${temp:0:1} -lt "7" ]; then
+	temp_icon=
+elif [ ${temp:0:1} -ge "7" ] && [ ${temp:0:1} -lt "13" ]; then
+	temp_icon=
+elif [ ${temp:0:1} -ge "13" ] && [ ${temp:0:1} -le "20" ]; then
+	temp_icon=
+elif [ ${temp:0:1} -gt "20" ]; then
+	temp_icon=
+fi
+
+temp="$temp "
+wind="$wind km/s"
+echo $weather
+
+if [ $(date +'%H') -lt 0 ] && [ $(date +'%H') -gt 8 ]; then
+	case $weather in
+		"Thunderstorm") icon= ;;
+		"Drizzle") icon= ;;
+		"Rain") icon= ;;
+		"Snow") icon= ;;
+		"Mist") icon= ;;
+		"Clouds") icon= ;;
+		"Smoke") icon= ;;
+		"Haze") icon=  ;;
+		"Dust") icon= ;;
+		"Fog") icon=  ;;
+		"Sand") icon=  ;;
+		"Ash") icon=   ;;
+		"Squall") icon= ;;
+		"Tornado") icon= ;;
+		"Clear") icon= ;;
+		*) icon=
+		weather=
+		temp=
+		wind=
+	esac
+else
+	case $weather in
+		"Thunderstorm") icon= ;;
+		"Drizzle") icon= ;;
+		"Rain") icon= ;;
+		"Snow") icon= ;;
+		"Mist") icon= ;;
+		"Clouds") icon= ;;
+		"Smoke") icon= ;;
+		"Haze") icon=  ;;
+		"Dust") icon= ;;
+		"Fog") icon=  ;;
+		"Sand") icon=  ;;
+		"Ash") icon=   ;;
+		"Squall") icon= ;;
+		"Tornado") icon= ;;
+		"Clear") icon= ;;
+		*) icon=" "
+		weather=
+		temp=
+		wind=
+	esac
+fi
+
+rm -rf $file && ( echo "$icon $description" ; echo "$temp_icon $temp" ; echo " $wind" ) >> $file

@@ -1,0 +1,11 @@
+#!/bin/bash
+# Float window and move it to corner
+x=$(( $(xdpyinfo | grep dimensions | cut -d " " -f7 | cut -d "x" -f1) - 311 ))
+y=$(( $(xdpyinfo | grep dimensions | cut -d "x" -f2 | cut -d "p" -f1) - 180 ))
+
+case $1 in
+	rbot) wmctrl -r :ACTIVE: -e 0,$x,$y,300,169 ;;
+	rtop) wmctrl -r :ACTIVE: -e 0,$x,9,300,169 ;;
+	lbot) wmctrl -r :ACTIVE: -e 0,9,$y,300,169 ;;
+	ltop) wmctrl -r :ACTIVE: -e 0,9,9,300,169 ;;
+esac

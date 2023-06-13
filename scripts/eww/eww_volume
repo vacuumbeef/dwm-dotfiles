@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+active=$(eww windows | grep "*volume_widget")
+
+for i in $(ps aux | grep eww_volume_close | grep bash | awk '{ print $2 }'); do
+	kill $i;
+done
+eww open volume_widget
+eww_volume_close

@@ -1,0 +1,57 @@
+# general settings
+auto-reload yes
+reload-time 25
+reload-threads 4
+download-retries 4
+download-timeout 10
+max-items 50
+prepopulate-query-feeds yes
+external-url-viewer "urlscan -dc -r 'linkhandler ()'"
+
+
+# external browser
+browser linkhandler
+macro , open-in-browser
+macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
+macro y set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler
+macro b set browser "$BROWSER" ; open-in-browser ; set browser linkhandler
+
+# unbind keys
+unbind-key ENTER
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+unbind-key s
+unbind-key g
+unbind-key G
+
+
+# bind keys - vim style
+bind-key j down
+bind-key k up
+bind-key s sort
+bind-key g home
+bind-key G end
+bind-key l open
+bind-key h quit articlelist
+bind-key h quit article
+
+# colors
+color info default color4
+color article default default
+color listnormal color5 black
+color listnormal_unread default black
+color listfocus color5 color1
+color listfocus_unread color2 color1
+
+#articlelist-format "%D > %13T > %t "
+articlelist-format " %9T > %t "
+articlelist-title-format " %T "
+feedlist-title-format " Feeds (%u unread, %t total)"
+feedlist-format     " %t%"
+itemview-title-format "Article '%T'"
+datetime-format "%b %d"
+
+#misc
+cleanup-on-quit no

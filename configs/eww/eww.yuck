@@ -1,0 +1,222 @@
+(defwidget ws1 [] (image :path ws1))
+(defwidget ws2 [] (image :path ws2))
+(defwidget ws3 [] (image :path ws3))
+(defwidget ws4 [] (image :path ws4))
+(defwidget ws5 [] (image :path ws5))
+(defwidget ws6 [] (image :path ws6))
+
+(defwidget ws []
+(box :class "tags" :orientation "h"
+       :space-evenly false
+       :spacing 5
+    (ws1)
+    (ws2)
+    (ws3)
+    (ws4)
+    (ws5)
+    (ws6)
+    ))
+
+(defwindow workspaces
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "740px"
+                      :y "7px"
+                      :width "123px"
+                      :height "1px")
+  (ws)
+  )
+
+
+
+
+
+
+
+
+
+
+
+(defwidget status_main []
+(box :class "status" :orientation "v"
+       :space-evenly false
+       :spacing 5
+    (timedate)
+    (weather)
+    ))
+
+(defwidget status_second []
+(box :class "status" :orientation "v"
+       :space-evenly false
+       :spacing 5
+    (updates)
+    (battery)
+    ))
+
+(defwidget battery_top []
+(box :class "status" :orientation "v"
+       :space-evenly false
+       :spacing 5
+    (battery)
+    ))
+
+(defwidget updates_top []
+(box :class "status" :orientation "v"
+       :space-evenly false
+       :spacing 5
+    (updates)
+    ))
+
+(defwidget timedate []
+  (box :class "timedate"
+       :orientation "v"
+       :space-evenly false
+       time_day
+       ))
+
+(defwidget weather []
+  (box :class "weather"
+       :orientation "v"
+       :space-evenly false
+       weather))
+
+(defwidget updates []
+  (box :class "updates"
+       :orientation "h"
+       :space-evenly false
+       " "
+       updates_no_aur
+       "/"
+       updates_aur))
+
+(defwidget battery []
+  (box :class "battery"
+       :orientation "h"
+       :space-evenly false
+       battery))
+
+(defpoll time_day :interval "10s"
+  "date '+%b %d, %H:%M'")
+
+(defpoll weather :interval "5m"
+  "cat /tmp/weathercache")
+
+(defpoll updates_no_aur :interval "15m"
+  "awk 'NR==1' /tmp/updatescache")
+
+(defpoll updates_aur :interval "15m"
+  "awk 'NR==2' /tmp/updatescache")
+
+(defpoll battery :interval "1m"
+  "~/bin/battery_cap")
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwidget volume []
+  (box :class "status"
+  	:orientation "h"
+	:space-evenly false
+	:halign "end"
+    (metric :label ""
+            :value foo
+            :onchange "pulsemixer --set-volume {}")
+	    ))
+
+(deflisten foo
+  `xobvolume`)
+
+
+(defwindow status_main
+  :monitor 0
+  :wm-ignore "true"
+  :stacking "overlay"
+  :focusable "false"
+  :geometry (geometry :x "10px"
+                      :y "10px"
+                      :width "0%"
+                      :height "0%")
+  (status_main))
+
+(defwindow status_second
+  :monitor 0
+  :wm-ignore "true"
+  :stacking "overlay"
+  :geometry (geometry :x "10px"
+                      :y "130px"
+                      :width "0%"
+                      :height "0%")
+  (status_second))
+
+(defwindow status_battery
+  :monitor 0
+  :wm-ignore "true"
+  :stacking "overlay"
+  :geometry (geometry :x "10px"
+                      :y "123px"
+                      :width "0%"
+                      :height "0%")
+  (status_second))
+
+(defwindow updates_top
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "10px"
+                      :y "10px"
+                      :width "10px"
+                      :height "46px")
+  (updates_top))
+
+(defwindow updates_under
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "10px"
+                      :y "64px"
+                      :width "10px"
+                      :height "46px")
+  (updates_top))
+
+(defwindow battery_top
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "10px"
+                      :y "10px"
+                      :width "0%"
+                      :height "46px")
+  (battery_top))
+
+(defwindow battery_under
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "10px"
+                      :y "64px"
+                      :width "0%"
+                      :height "46px")
+  (battery_top))
+
+(defwindow status_remind
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "10px"
+                      :y "90px"
+                      :width "248px"
+                      :height "40px")
+  (status_remind))
+
+
+(defwindow volume_widget
+  :monitor 0
+  :wm-ignore "true"
+  :geometry (geometry :x "45%"
+                      :y "650px"
+                      :width "157px"
+                      :height "40px")
+  (volume))

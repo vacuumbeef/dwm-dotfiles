@@ -1,0 +1,4 @@
+#!/bin/bash
+sleep 5
+eww close battery_top
+eww close battery_under

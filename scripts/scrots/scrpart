@@ -1,0 +1,3 @@
+#!/bin/bash
+#maim -s | xclip -selection clipboard -t image/png
+maim -s -o  ~/tmp/scrots/scrpart-$(date +%F-%H-%M-%S).png && notify-send -u low "Screenshot taken (Part)" -t 3000 && exit 0

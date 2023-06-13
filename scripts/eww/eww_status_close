@@ -1,0 +1,4 @@
+#!/bin/bash
+sleep 5
+eww close status_main
+eww close status_second

@@ -1,0 +1,7 @@
+#!/bin/bash
+cp $1 $HOME/.config/wall.png
+feh --bg-fill $WALL
+#swaybg -m fit -i /home/cordbeef/.config/wall.png &
+flavours generate dark /home/cordbeef/.config/wall.png
+flavours apply generated
+betterlockscreen -u $WALL

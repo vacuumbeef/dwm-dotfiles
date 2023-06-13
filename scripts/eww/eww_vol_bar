@@ -1,0 +1,14 @@
+#!/bin/bash
+active=$(eww windows | grep "*vol")
+
+if [ -z "$active"]; then
+	eww open vol_bar
+	eww_vol_close &
+else
+	for i in $(ps aux | grep eww_vol_close | grep bash | awk '{ print $2 }'); do
+		kill $i;
+	done
+	eww update volume="$(pulsemixer --get-volume)"
+	eww_vol_close &
+fi
+

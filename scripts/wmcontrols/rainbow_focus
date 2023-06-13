@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# z3bra - 2015 (c) wtfpl
+# make the current window "rainbowish"... Awesome idea from xero@nixers.net !
+
+# add pywal colors
+. "${HOME}/.cache/wal/colors.sh"
+
+FREQ=${FREQ:-0.3}
+COLORS=$(echo $color2 $color3 $color4 $color3 $color2 $color1 | tr -d \#)
+CUR=$(pfw)
+
+while :; do
+    for c in $COLORS; do
+        chwb -c $c $(pfw) 
+        sleep $FREQ
+    done
+done
+

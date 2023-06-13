@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# notify on low battery percentage
+status=$(cat /sys/class/power_supply/BAT0/status | sed "s/Unknown/Plugged/;s/Not charging/Plugged/" || echo "No battery")
+cap=$(cat /sys/class/power_supply/BAT0/capacity)
+
+if [ $status == "Discharging" ]; then
+	if [ $cap -gt 15 ]; then
+		echo 1
+		eww_battery_top
+	elif [ $cap -le 5 ]; then
+		echo 2
+		eww_battery_top
+	elif [ $cap -le 3 ]; then
+		echo 3
+		eww_battery_top
+	else
+		echo 4
+		eww_battery_top
+	fi
+fi
