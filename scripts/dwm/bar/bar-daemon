@@ -1,8 +1,8 @@
 #!/bin/sh
 while read -r line; do
 	case $line in
-		*F1*) eww update ws1="$HOME/bin/dwm/bar/red.png";; 
-		*1*) eww update ws1="$HOME/bin/dwm/bar/white.png";; 
+		*"F1 "*) eww update ws1="$HOME/bin/dwm/bar/red.png";; 
+		*"1 "*) eww update ws1="$HOME/bin/dwm/bar/white.png";; 
 		*) eww update ws1="$HOME/bin/dwm/bar/black.png";;
 	esac
 
@@ -34,5 +34,30 @@ while read -r line; do
 		*F6*) eww update ws6="$HOME/bin/dwm/bar/red.png";;
 		*6*) eww update ws6="$HOME/bin/dwm/bar/white.png";;
 		*) eww update ws6="$HOME/bin/dwm/bar/black.png";;
+	esac
+	case $line in
+		*F7*) eww update ws7="$HOME/bin/dwm/bar/red.png";;
+		*7*) eww update ws7="$HOME/bin/dwm/bar/white.png";;
+		*) eww update ws7="$HOME/bin/dwm/bar/black.png";;
+	esac
+	case $line in
+		*F8*) eww update ws8="$HOME/bin/dwm/bar/red.png";;
+		*8*) eww update ws8="$HOME/bin/dwm/bar/white.png";;
+		*) eww update ws8="$HOME/bin/dwm/bar/black.png";;
+	esac
+	case $line in
+		*F9*) eww update ws9="$HOME/bin/dwm/bar/red.png";;
+		*9*) eww update ws9="$HOME/bin/dwm/bar/white.png";;
+		*) eww update ws9="$HOME/bin/dwm/bar/black.png";;
+	esac
+	case $line in
+		*F10*) eww update ws10="$HOME/bin/dwm/bar/red.png";;
+		*10*) eww update ws10="$HOME/bin/dwm/bar/white.png";;
+		*) eww update ws10="$HOME/bin/dwm/bar/black.png";;
+	esac
+	case $line in
+		*F11*) eww update ws11="$HOME/bin/dwm/bar/red.png";;
+		*11*) eww update ws11="$HOME/bin/dwm/bar/white.png";;
+		*) eww update ws11="$HOME/bin/dwm/bar/black.png";;
 	esac
 done < <(dwm-msg --ignore-reply subscribe tag_change_event | unbuffer -p tags-calc.py)

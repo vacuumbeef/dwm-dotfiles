@@ -1,0 +1,41 @@
+#!/usr/bin/bash
+
+BATTERY_PATH="/sys/class/power_supply/BAT0"
+BATTERY_ICON_CHARGING=''
+
+capacity=$(cat "$BATTERY_PATH"/capacity)
+status=$(cat "$BATTERY_PATH"/status)
+
+if [[ "$status" = "Discharging" ]]; then
+        if ((capacity >= 95)); then
+                battery_icon=''
+        elif ((capacity >= 90)); then
+                battery_icon=''
+        elif ((capacity >= 80)); then
+                battery_icon=''
+        elif ((capacity >= 70)); then
+                battery_icon=''
+        elif ((capacity >= 60)); then
+                battery_icon=''
+        elif ((capacity >= 50)); then
+                battery_icon=''
+        elif ((capacity >= 40)); then
+                battery_icon=''
+        elif ((capacity >= 30)); then
+                battery_icon=''
+        elif ((capacity >= 20)); then
+                battery_icon=''
+        elif ((capacity >= 10)); then
+                battery_icon=''
+        elif ((capacity >= 5)); then
+                battery_icon=''        else
+                battery_icon=''
+        fi
+else
+       battery_icon=$BATTERY_ICON_CHARGING
+fi
+
+
+echo "$battery_icon $(cat "$BATTERY_PATH"/capacity)%"
+rm /tmp/batt_tmp
+echo $! >> /tmp/batt_tmp
